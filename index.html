@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Indian Oil Corporation Limited - PPE Violation Records</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap');
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 20px 15px;
+      background-color: #f8fafc;
+      color: #222;
+    }
+
+    header {
+      background-color: #FF6600;
+      padding: 15px 20px;
+      color: white;
+      display: flex;
+      align-items: center;
+      position: relative;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+      border-radius: 0 0 12px 12px;
+      height: 140px;
+    }
+
+    header img {
+      height: 140px;
+      object-fit: contain;
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    header h1 {
+      font-size: 2.6rem;
+      font-weight: 700;
+      margin: 0 auto;
+      text-align: center;
+      width: 100%;
+      max-width: 900px;
+      line-height: 140px;
+      pointer-events: none;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      background: #fff;
+      padding: 20px 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+    }
+
+    h2 {
+      text-align: center;
+      color: #003366;
+      margin-bottom: 25px;
+      font-weight: 700;
+      font-size: 2rem;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 20px;
+      justify-content: center;
+    }
+
+    .filters label {
+      font-weight: 600;
+      margin-right: 8px;
+      color: #003366;
+    }
+
+    .filters input, .filters select {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1.5px solid #ccc;
+      min-width: 150px;
+      font-size: 0.95rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 0.95rem;
+      table-layout: fixed;
+      word-wrap: break-word;
+    }
+
+    th, td {
+      padding: 12px 10px;
+      border-bottom: 1px solid #ddd;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    th {
+      background-color: #003366;
+      color: white;
+      position: sticky;
+      top: 0;
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    th.sort-asc::after {
+      content: " ▲";
+      font-size: 0.7em;
+    }
+
+    th.sort-desc::after {
+      content: " ▼";
+      font-size: 0.7em;
+    }
+
+    tr:hover {
+      background-color: #ffedd6;
+      transition: background-color 0.3s ease;
+    }
+
+    img {
+      max-width: 210px;
+      border-radius: 8px;
+      box-shadow: 0 3px 8px rgba(255, 102, 0, 0.3);
+      border: 2px solid #FF6600;
+      max-height: 150px;
+      object-fit: contain;
+    }
+
+    .no-data {
+      text-align: center;
+      font-size: 1.1em;
+      color: #666;
+      padding: 30px 0;
+    }
+
+    footer {
+      margin-top: 40px;
+      padding: 20px 15px;
+      background-color: #003366;
+      color: white;
+      text-align: center;
+      font-size: 0.9rem;
+      border-radius: 12px 12px 0 0;
+    }
+
+    @media (max-width: 768px) {
+      th, td {
+        font-size: 0.85rem;
+        padding: 10px 6px;
+      }
+
+      img {
+        max-width: 120px;
+        max-height: 80px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        justify-content: center;
+      }
+      header h1 {
+        font-size: 1.3rem;
+        text-align: center;
+        flex-grow: unset;
+      }
+      .filters {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .filters input, .filters select {
+        width: 100%;
+        min-width: unset;
+      }
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+      thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+      }
+      tr {
+        margin-bottom: 15px;
+        border-radius: 10px;
+        box-shadow: 0 3px 8px rgba(255, 102, 0, 0.2);
+        background: white;
+        padding: 10px 15px;
+      }
+      td {
+        border: none;
+        position: relative;
+        padding-left: 50%;
+        text-align: left;
+      }
+      td::before {
+        position: absolute;
+        top: 12px;
+        left: 15px;
+        width: 45%;
+        white-space: nowrap;
+        font-weight: 700;
+        color: #003366;
+      }
+      td:nth-of-type(1)::before { content: "ID"; }
+      td:nth-of-type(2)::before { content: "Frame #"; }
+      td:nth-of-type(3)::before { content: "People Count"; }
+      td:nth-of-type(4)::before { content: "Timestamp"; }
+      td:nth-of-type(5)::before { content: "Area"; }
+      td:nth-of-type(6)::before { content: "Violations"; }
+      td:nth-of-type(7)::before { content: "Violation Count"; }
+      td:nth-of-type(8)::before { content: "Image"; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="https://www.logo.wine/a/logo/Indian_Oil_Corporation/Indian_Oil_Corporation-Logo.wine.svg" />
+  <h1>Indian Oil Corporation Limited</h1>
+</header>
+
+<div class="container">
+  <h2>PPE Violation Detection Records</h2>
+
+  <div class="filters" aria-label="Filters and search">
+    <label for="filter-area">Filter by Area:</label>
+    <input type="text" id="filter-area" placeholder="Type area name" />
+
+    <label for="filter-violation-count">Filter by Violation Count:</label>
+    <select id="filter-violation-count">
+      <option value="">All</option>
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2+">2+</option>
+    </select>
+  </div>
+
+  {% if violations %}
+  <table id="violations-table" aria-label="PPE violations table">
+    <thead>
+      <tr>
+        <th data-sort="number">ID</th>
+        <th data-sort="number">Frame #</th>
+        <th data-sort="number">People Count</th>
+        <th data-sort="string">Timestamp</th>
+        <th data-sort="string">Area</th>
+        <th data-sort="string">Violations</th>
+        <th data-sort="number">Violation Count</th>
+        <th>Image</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for v in violations %}
+      <tr>
+        <td>{{ v.id }}</td>
+        <td>{{ v.frame_number }}</td>
+        <td>{{ v.people_count }}</td>
+        <td>{{ v.timestamp }}</td>
+        <td>{{ v.area }}</td>
+        <td>{{ v.violations }}</td>
+        <td>{{ v.violation_count }}</td>
+        <td>
+          {% if v.image_data %}
+          <img src="data:image/jpeg;base64,{{ v.image_data }}" alt="Violation Image" />
+          {% else %}
+          <span style="color: #999;">No Image</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <div class="no-data">No violation records found.</div>
+  {% endif %}
+</div>
+
+<footer>
+  &copy; 2025 Indian Oil Corporation Limited. All rights reserved.<br />
+  Indian Oil Bhavan, Ground Floor Noonmati, Guwahati Kamrup(M) - 781020
+</footer>
+
+<script>
+  (() => {
+    const table = document.getElementById('violations-table');
+    if (!table) return;
+
+    const tbody = table.tBodies[0];
+    const rows = Array.from(tbody.rows);
+
+    let currentSortCol = -1;
+    let currentSortDir = 1;
+
+    const sortTable = (colIndex, type) => {
+      rows.sort((a, b) => {
+        let valA = a.cells[colIndex].innerText.trim().toLowerCase();
+        let valB = b.cells[colIndex].innerText.trim().toLowerCase();
+
+        if (type === 'number') {
+          valA = parseFloat(valA) || 0;
+          valB = parseFloat(valB) || 0;
+        }
+
+        if (valA < valB) return -1 * currentSortDir;
+        if (valA > valB) return 1 * currentSortDir;
+        return 0;
+      });
+      rows.forEach(r => tbody.appendChild(r));
+    };
+
+    Array.from(table.tHead.rows[0].cells).forEach((th, i) => {
+      if (!th.dataset.sort) return;
+      th.addEventListener('click', () => {
+        Array.from(table.tHead.rows[0].cells).forEach(cell => {
+          cell.classList.remove('sort-asc', 'sort-desc');
+        });
+
+        currentSortDir = currentSortCol === i ? -currentSortDir : 1;
+        currentSortCol = i;
+        th.classList.add(currentSortDir === 1 ? 'sort-asc' : 'sort-desc');
+        sortTable(i, th.dataset.sort);
+      });
+    });
+
+    const filterAreaInput = document.getElementById('filter-area');
+    const filterViolationSelect = document.getElementById('filter-violation-count');
+
+    const filterRows = () => {
+      const areaFilter = filterAreaInput.value.toLowerCase();
+      const violationFilter = filterViolationSelect.value;
+
+      rows.forEach(row => {
+        const areaText = row.cells[4].innerText.toLowerCase();
+        const violationCount = parseInt(row.cells[6].innerText, 10);
+
+        const areaMatch = areaText.includes(areaFilter);
+        let violationMatch = true;
+
+        if (violationFilter === '0') violationMatch = violationCount === 0;
+        else if (violationFilter === '1') violationMatch = violationCount === 1;
+        else if (violationFilter === '2+') violationMatch = violationCount >= 2;
+
+        row.style.display = (areaMatch && violationMatch) ? '' : 'none';
+      });
+    };
+
+    filterAreaInput.addEventListener('input', filterRows);
+    filterViolationSelect.addEventListener('change', filterRows);
+  })();
+</script>
+
+</body>
+</html>
